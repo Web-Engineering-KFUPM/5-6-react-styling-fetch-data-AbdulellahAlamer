@@ -315,7 +315,6 @@ TODO 3.7: Display Data:
 END OF LAB INSTRUCTIONS
 ===================================================================
 */
-
 import React, { useState, useEffect } from "react";
 import { Container, Alert, Spinner } from "react-bootstrap";
 import UserList from "./components/UserList";
@@ -324,12 +323,12 @@ import UserModal from "./components/UserModal";
 
 function App() {
   const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    {
-      /*API fetch logic*/
-    }
-  }, []);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const handleUserClick = (user) => {};
 
