@@ -54,26 +54,3 @@
     font-size: 1.25rem;
   }
 }
-/* Bootstrap overrides */
-.btn-primary {
-}
-
-.btn-primary:hover {
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .user-avatar {
-  }
-
-  .display-4 {
-  }
-}
-
-/* Custom card header styling */
-.card-header {
-}
-
-/* Custom alert styling */
-.alert {
-}
