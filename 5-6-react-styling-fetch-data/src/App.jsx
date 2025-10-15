@@ -330,9 +330,50 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const handleUserClick = (user) => {};
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        const data = await response.json();
+        setUsers(data);
+        setFilteredUsers(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleCloseModal = () => {};
+    fetchUsers();
+  }, []);
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedUser(null);
+  };
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredUsers(users);
+      return;
+    }
+
+    const filtered = users.filter((user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredUsers(filtered);
+  }, [searchTerm, users]);
 
   return (
     <div className="app">
@@ -344,13 +385,19 @@ function App() {
       </header>
 
       <Container className="mb-5">
-        <SearchBar />
+        <SearchBar onSearchChange={setSearchTerm} />
 
-        {/* {loading && <Spinner ... />} */}
-        {/* {error && <Alert ...>{error}</Alert>} */}
-        {/* <UserList users={filteredUsers} onUserClick={handleUserClick} /> */}
+        {loading && <Spinner animation="border" />}
+        {error && <Alert variant="danger">Failed to load users: {error}</Alert>}
+        {!loading && !error && (
+          <UserList users={filteredUsers} onUserClick={handleUserClick} />
+        )}
 
-        <UserModal />
+        <UserModal
+          show={showModal}
+          user={selectedUser}
+          onHide={handleCloseModal}
+        />
       </Container>
 
       <footer className="bg-light py-4 mt-5">
