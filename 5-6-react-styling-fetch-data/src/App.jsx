@@ -316,36 +316,35 @@ END OF LAB INSTRUCTIONS
 ===================================================================
 */
 
-import React, { useState, useEffect } from 'react'
-import { Container, Alert, Spinner } from 'react-bootstrap'
-import UserList from './components/UserList'
-import SearchBar from './components/SearchBar'
-import UserModal from './components/UserModal'
+import React, { useState, useEffect } from "react";
+import { Container, Alert, Spinner } from "react-bootstrap";
+import UserList from "./components/UserList";
+import SearchBar from "./components/SearchBar";
+import UserModal from "./components/UserModal";
 
 function App() {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    {/*API fetch logic*/}
+    {
+      /*API fetch logic*/
+    }
+  }, []);
 
-  }, [])
+  const handleUserClick = (user) => {};
 
-  const handleUserClick = (user) => {
-  }
-
-  const handleCloseModal = () => {
-  }
+  const handleCloseModal = () => {};
 
   return (
     <div className="app">
-      <header className="">
+      <header className="bg-primary text-white py-3 mb-4 shadow">
         <Container>
-          <h1 className="">User Management Dashboard</h1>
-          <p className="">Manage and view user information</p>
+          <h1 className="h2 mb-0">User Management Dashboard</h1>
+          <p className="mb-0 opacity-75">Manage and view user information</p>
         </Container>
       </header>
 
-      <Container className="">
+      <Container className="mb-5">
         <SearchBar />
 
         {/* {loading && <Spinner ... />} */}
@@ -355,7 +354,7 @@ function App() {
         <UserModal />
       </Container>
 
-      <footer className="">
+      <footer className="bg-light py-4 mt-5">
         <Container>
           <p className="text-center text-muted mb-0">
             &copy; 2024 User Management Dashboard
@@ -363,7 +362,7 @@ function App() {
         </Container>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

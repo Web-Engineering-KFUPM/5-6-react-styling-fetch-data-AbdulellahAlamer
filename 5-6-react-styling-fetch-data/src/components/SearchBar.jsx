@@ -1,9 +1,9 @@
-import React from 'react'
-import { Form, InputGroup } from 'react-bootstrap'
+import React from "react";
+import { Form, InputGroup } from "react-bootstrap";
 
 function SearchBar({ searchTerm, onSearchChange }) {
   return (
-    <div className="">
+    <div className="mb-4">
       <InputGroup>
         <InputGroup.Text></InputGroup.Text>
         <Form.Control
@@ -13,7 +13,7 @@ function SearchBar({ searchTerm, onSearchChange }) {
         />
       </InputGroup>
     </div>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;
